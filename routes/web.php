@@ -22,6 +22,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Complaints
+// Create
+Route::get('/complaint/create', [App\Http\Controllers\ComplaintController::class, 'create'])->middleware(['auth'])->name('complaint.create');
+Route::post('/complaint', [App\Http\Controllers\ComplaintController::class, 'store'])->name('complaint.store');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
