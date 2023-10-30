@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -37,9 +38,9 @@ class RegisteredUserController extends Controller
         ]);
 
         $role = Role::where('name', 'Kampeerder')->first(); // Retrieve the role by name
+
         if (!$role) {
-            // Handle the case when the role is not found
-            // You might want to throw an exception, return an error response, or provide a default role ID
+            return redirect()->back()->with('error', 'No role found')->withInput();
         }
 
         $user = User::create([
