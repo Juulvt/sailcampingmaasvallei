@@ -15,6 +15,9 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('complaint.create')" :active="request()->routeIs('complaint')">
+                        Klacht indienen
+                    </x-nav-link>
                 </div>
             </div>
 

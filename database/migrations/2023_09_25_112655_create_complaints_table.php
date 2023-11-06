@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('complainttype_id')->constrained();
             $table->foreignId('statustype_id')->constrained();
-            $table->foreignId('prioritytype_id')->constrained()->nullable();         
+            $table->unsignedBigInteger('prioritytype_id')->nullable();
+            $table->foreign('prioritytype_id')->references('id')->on('prioritytypes');       
             $table->string('description');
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('employee_id')->constrained(
-                table: 'users', indexName: 'user_id'
-            )->nullable();
+            $table->unsignedBigInteger('employee_id')->nullable();
+            $table->foreign('employee_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
